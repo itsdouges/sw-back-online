@@ -1,1 +1,1 @@
-export const register = () => {};
+export * from './post.js';

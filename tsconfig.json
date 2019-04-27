@@ -1,7 +1,7 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
-    "lib": ["dom"],
+    "lib": ["dom", "esnext"],
     "baseUrl": "./src",
     "allowUnreachableCode": false,
     "allowSyntheticDefaultImports": true,
@@ -21,6 +21,10 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "strictNullChecks": true,
+    "keyofStringsOnly": true,
+    "moduleResolution": "node",
+    "declaration": true,
+    "resolveJsonModule": true,
     "target": "esnext",
     "module": "esnext",
     "outDir": "./dist"
