@@ -1,0 +1,26 @@
+{
+  "name": "sw-back-online",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsc --watch & http-server -o -a localhost --ssl --cert test/cert.pem --key test/key.pem -s --cors -c-1",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/madou/sw-back-online.git"
+  },
+  "author": "madou",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/madou/sw-back-online/issues"
+  },
+  "homepage": "https://github.com/madou/sw-back-online#readme",
+  "devDependencies": {
+    "http-server": "^0.11.1",
+    "http-server-ssl": "^0.0.7",
+    "typescript": "^3.4.5"
+  }
+}
