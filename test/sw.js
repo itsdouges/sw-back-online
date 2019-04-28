@@ -52,8 +52,37 @@ self.addEventListener('sync', function(event) {
 //   console.log(event);
 // });
 self.addEventListener('message', function(event) {
+  // fallback
   if (event.data.sync) {
-    console.log('saving form data', event.data);
+    return fetch('https://postman-echo.com/post', {
+      method: 'POST',
+      body: JSON.stringify({ test: 'data' }),
+      mode: 'no-cors',
+    })
+      .then(() => {
+        console.log('success!');
+        return self.clients.matchAll();
+      })
+      .then((clients) => {
+        clients.forEach((client) => {
+          client.postMessage({
+            showNotification: {
+              name: 'Request successfully submitted',
+              options: {
+                body: 'Click here to view your request.',
+              },
+            },
+          });
+        });
+      });
   }
 });
 // end
+
+self.addEventListener('offline', function() {
+  alert('You have lost internet access!');
+});
+
+self.addEventListener('online', function() {
+  alert('You are back online');
+});
