@@ -18,11 +18,14 @@ self.addEventListener('sync', function(event) {
   if (event.tag === 'fetchPost') {
     console.log('hmm found sync', event);
 
-    const promise = fetch('https://postman-echo.com/post', {
-      method: 'POST',
-      body: JSON.stringify({ test: 'data' }),
-      mode: 'no-cors',
-    })
+    // const promise = fetch('https://postman-echo.com/post', {
+    //   method: 'POST',
+    //   body: JSON.stringify({ test: 'data' }),
+    //   mode: 'no-cors',
+    // })
+    // Watch out for fetch failing. It can fail behind the scenes!
+    // Need to handle errors as well.
+    const promise = Promise.resolve()
       .then(() => {
         console.log('success!');
 
@@ -54,11 +57,14 @@ self.addEventListener('sync', function(event) {
 self.addEventListener('message', function(event) {
   // fallback
   if (event.data.sync) {
-    return fetch('https://postman-echo.com/post', {
-      method: 'POST',
-      body: JSON.stringify({ test: 'data' }),
-      mode: 'no-cors',
-    })
+    // return fetch('https://postman-echo.com/post', {
+    //   method: 'POST',
+    //   body: JSON.stringify({ test: 'data' }),
+    //   mode: 'no-cors',
+    // })
+    // Watch out for fetch failing. It can fail behind the scenes!
+    // Need to handle errors as well.
+    const promise = Promise.resolve()
       .then(() => {
         console.log('success!');
         // return self.clients.matchAll();
@@ -73,6 +79,8 @@ self.addEventListener('message', function(event) {
         // clients.forEach((client) => {
         // });
       });
+
+    event.waitUntil(promise);
   }
 });
 // end
