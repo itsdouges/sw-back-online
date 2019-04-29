@@ -26,19 +26,19 @@ self.addEventListener('sync', function(event) {
       .then(() => {
         console.log('success!');
 
-        return self.clients.matchAll();
+        // return self.clients.matchAll();
       })
       .then((clients) => {
-        clients.forEach((client) => {
-          client.postMessage({
-            showNotification: {
-              name: 'Request successfully submitted',
-              options: {
-                body: 'Click here to view your request.',
-              },
-            },
-          });
-        });
+        return self.registration.showNotification(
+          'Request successfully submitted',
+          {
+            body: 'Click here to view your request.',
+          },
+        );
+        // const promises = clients.forEach((client) => {
+
+        //   return Promise.all(promises);
+        // });
       });
 
     event.waitUntil(promise);
@@ -61,28 +61,26 @@ self.addEventListener('message', function(event) {
     })
       .then(() => {
         console.log('success!');
-        return self.clients.matchAll();
+        // return self.clients.matchAll();
       })
       .then((clients) => {
-        clients.forEach((client) => {
-          client.postMessage({
-            showNotification: {
-              name: 'Request successfully submitted',
-              options: {
-                body: 'Click here to view your request.',
-              },
-            },
-          });
-        });
+        return self.registration.showNotification(
+          'Request successfully submitted',
+          {
+            body: 'Click here to view your request.',
+          },
+        );
+        // clients.forEach((client) => {
+        // });
       });
   }
 });
 // end
 
-self.addEventListener('offline', function() {
-  alert('You have lost internet access!');
-});
+// self.addEventListener('offline', function() {
+//   alert('You have lost internet access!');
+// });
 
-self.addEventListener('online', function() {
-  alert('You are back online');
-});
+// self.addEventListener('online', function() {
+//   alert('You are back online');
+// });
